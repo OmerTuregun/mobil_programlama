@@ -71,8 +71,8 @@ proguard/
 obj/
 
 # Son kullanıcı çıkış dosyaları
-*.apk
-*.ap_
+#*.apk
+#*.ap_
 
 # Gradle Wrapper
 gradle-wrapper.jar
@@ -81,16 +81,17 @@ gradle-wrapper.jar
 /build/
 
 # Test Sonuçları
-*.xml
-*.html
-*.json
-*.png
-*.svg
-*.coverage
+#*.xml
+#*.html
+#*.json
+#*.png
+#*.svg
+#*.coverage # bunları kullanırken dikkatli olmak lazım 
 
 # Kendi belirlediğiniz hassas dosyalar
 # Örneğin:
 # secrets.properties
 # api-keys.json
 
+#deneme amaçlı 
 gozukme.txt
