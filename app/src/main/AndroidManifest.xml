@@ -2,6 +2,30 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <!-- Gerekli İzinler -->
+    <!-- Bluetooth İzinleri -->
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+    <uses-permission android:name="android.permission.BLUETOOTH_SCAN" />
+    <uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADVERTISE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
+    <!-- Wi-Fi İzinleri -->
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <!-- NFC İzinleri -->
+    <uses-permission android:name="android.permission.NFC" />
+
+    <!-- USB İzinleri -->
+    <uses-feature android:name="android.hardware.usb.host" android:required="false" />
+
+    <!-- Minimum SDK Seviyesi Kontrolü -->
+    <uses-sdk
+        tools:overrideLibrary="com.example.mobilprogramlama" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -12,6 +36,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MobilProgramlama"
         tools:targetApi="31">
+
         <activity
             android:name=".MainActivity"
             android:exported="true">
