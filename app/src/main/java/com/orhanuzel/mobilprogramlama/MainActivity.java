@@ -4,6 +4,7 @@ import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.le.BluetoothLeScanner;
 import android.bluetooth.le.ScanCallback;
 import android.bluetooth.le.ScanResult;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
@@ -44,6 +45,8 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.stopScanButton).setOnClickListener(v -> stopScan());
         // Bluetooth desteğini kontrol et
         checkBluetoothSupport();
+        // Wi-Fi Aç-Kapat işlevi kontrolü
+        findViewById(R.id.toggleWifiButton).setOnClickListener(v -> toggleWifi());
     }
 
     /**
@@ -69,6 +72,35 @@ public class MainActivity extends AppCompatActivity {
             checkBluetoothSupportInternal();
         }
     }
+
+    private void checkWifiStatus() {
+        android.net.wifi.WifiManager wifiManager = (android.net.wifi.WifiManager) getApplicationContext().getSystemService(Context.WIFI_SERVICE);
+
+        if (wifiManager.isWifiEnabled()) {
+            Log.d("Wi-Fi", "Wi-Fi açık.");
+            Toast.makeText(this, "Wi-Fi açık", Toast.LENGTH_SHORT).show();
+        } else {
+            Log.d("Wi-Fi", "Wi-Fi kapalı.");
+            Toast.makeText(this, "Wi-Fi kapalı", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private void toggleWifi() {
+        android.net.wifi.WifiManager wifiManager = (android.net.wifi.WifiManager) getApplicationContext().getSystemService(Context.WIFI_SERVICE);
+
+        if (wifiManager.isWifiEnabled()) {
+            // Wi-Fi'yi kapat
+            wifiManager.setWifiEnabled(false);
+            Log.d("Wi-Fi", "Wi-Fi kapatıldı.");
+            Toast.makeText(this, "Wi-Fi kapatıldı", Toast.LENGTH_SHORT).show();
+        } else {
+            // Wi-Fi'yi aç
+            wifiManager.setWifiEnabled(true);
+            Log.d("Wi-Fi", "Wi-Fi açıldı.");
+            Toast.makeText(this, "Wi-Fi açıldı.", Toast.LENGTH_SHORT).show();
+        }
+    }
+
 
     /**
      * Bluetooth desteğini ve durumunu kontrol eder.
