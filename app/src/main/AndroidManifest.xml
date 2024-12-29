@@ -19,6 +19,8 @@
 
     <!-- NFC İzinleri -->
     <uses-permission android:name="android.permission.NFC" />
+    <uses-feature android:name="android.hardware.nfc" android:required="false" />
+
 
     <!-- USB İzinleri -->
     <uses-feature android:name="android.hardware.usb.host" android:required="false" />

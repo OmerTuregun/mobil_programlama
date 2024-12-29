@@ -43,11 +43,28 @@ public class MainActivity extends AppCompatActivity {
         // Butonlara tıklama işlevi ekleyin
         findViewById(R.id.startScanButton).setOnClickListener(v -> startScan());
         findViewById(R.id.stopScanButton).setOnClickListener(v -> stopScan());
+        findViewById(R.id.checkNfcButton).setOnClickListener(v -> checkNfcSupport());
         // Bluetooth desteğini kontrol et
         checkBluetoothSupport();
         // Wi-Fi Aç-Kapat işlevi kontrolü
         findViewById(R.id.toggleWifiButton).setOnClickListener(v -> toggleWifi());
     }
+
+    private void checkNfcSupport() {
+        android.nfc.NfcAdapter nfcAdapter = android.nfc.NfcAdapter.getDefaultAdapter(this);
+
+        if (nfcAdapter == null) {
+            Log.e("NFC", "Cihaz NFC desteklemiyor.");
+            Toast.makeText(this, "Cihaz NFC desteklemiyor.", Toast.LENGTH_SHORT).show();
+        } else if (!nfcAdapter.isEnabled()) {
+            Log.d("NFC", "NFC devre dışı.");
+            Toast.makeText(this, "NFC devre dışı. Lütfen etkinleştirin.", Toast.LENGTH_SHORT).show();
+        } else {
+            Log.d("NFC", "NFC etkin.");
+            Toast.makeText(this, "NFC etkin.", Toast.LENGTH_SHORT).show();
+        }
+    }
+
 
     /**
      * Çalışma zamanı izinlerini kontrol eder ve gerekirse kullanıcıdan izin ister.
