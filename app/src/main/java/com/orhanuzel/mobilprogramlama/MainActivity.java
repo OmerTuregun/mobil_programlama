@@ -1,10 +1,14 @@
 package com.orhanuzel.mobilprogramlama;
 
 import android.bluetooth.BluetoothAdapter;
+import android.bluetooth.le.BluetoothLeScanner;
+import android.bluetooth.le.ScanCallback;
+import android.bluetooth.le.ScanResult;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
     private static final int REQUEST_BLUETOOTH_PERMISSIONS = 2;
 
     private BluetoothAdapter bluetoothAdapter; // Bluetooth Adapter
+    private BluetoothLeScanner bluetoothLeScanner; // BLE Scanner
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +38,10 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
 
+
+        // Butonlara tıklama işlevi ekleyin
+        findViewById(R.id.startScanButton).setOnClickListener(v -> startScan());
+        findViewById(R.id.stopScanButton).setOnClickListener(v -> stopScan());
         // Bluetooth desteğini kontrol et
         checkBluetoothSupport();
     }
@@ -42,12 +51,17 @@ public class MainActivity extends AppCompatActivity {
      */
     private void checkBluetoothPermissions() {
         if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.BLUETOOTH_CONNECT)
-                != PackageManager.PERMISSION_GRANTED) {
+                != PackageManager.PERMISSION_GRANTED ||
+                ContextCompat.checkSelfPermission(this, android.Manifest.permission.BLUETOOTH_SCAN)
+                        != PackageManager.PERMISSION_GRANTED ||
+                ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION)
+                        != PackageManager.PERMISSION_GRANTED) {
             // İzin gerekli, kullanıcıdan iste
             ActivityCompat.requestPermissions(this,
                     new String[]{
                             android.Manifest.permission.BLUETOOTH_CONNECT,
-                            android.Manifest.permission.BLUETOOTH_SCAN
+                            android.Manifest.permission.BLUETOOTH_SCAN,
+                            android.Manifest.permission.ACCESS_FINE_LOCATION
                     },
                     REQUEST_BLUETOOTH_PERMISSIONS);
         } else {
@@ -93,9 +107,71 @@ public class MainActivity extends AppCompatActivity {
             startActivityForResult(enableBtIntent, REQUEST_ENABLE_BT);
         } else {
             Log.d("BLE", "Bluetooth etkin.");
+            startScan(); // BLE taramayı başlat
         }
     }
 
+    /**
+     * BLE tarama işlemini başlatır.
+     */
+    private void startScan() {
+        bluetoothLeScanner = bluetoothAdapter.getBluetoothLeScanner();
+
+        if (bluetoothLeScanner != null) {
+            if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.BLUETOOTH_SCAN) != PackageManager.PERMISSION_GRANTED) {
+                // TODO: Consider calling
+                //    ActivityCompat#requestPermissions
+                // here to request the missing permissions, and then overriding
+                //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                //                                          int[] grantResults)
+                // to handle the case where the user grants the permission. See the documentation
+                // for ActivityCompat#requestPermissions for more details.
+                return;
+            }
+            bluetoothLeScanner.startScan(leScanCallback);
+            Log.d("BLE", "BLE tarama başlatıldı.");
+            Toast.makeText(this, "BLE tarama başlatıldı", Toast.LENGTH_SHORT).show();
+        } else {
+            Log.e("BLE", "BluetoothLeScanner alınamadı.");
+        }
+    }
+
+    /**
+     * BLE tarama işlemini durdurur.
+     */
+    private void stopScan() {
+        if (bluetoothLeScanner != null) {
+            if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.BLUETOOTH_SCAN) != PackageManager.PERMISSION_GRANTED) {
+                // TODO: Consider calling
+                //    ActivityCompat#requestPermissions
+                // here to request the missing permissions, and then overriding
+                //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                //                                          int[] grantResults)
+                // to handle the case where the user grants the permission. See the documentation
+                // for ActivityCompat#requestPermissions for more details.
+                return;
+            }
+            bluetoothLeScanner.stopScan(leScanCallback);
+            Log.d("BLE", "BLE tarama durduruldu.");
+            Toast.makeText(this, "BLE tarama durduruldu", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    /**
+     * Tarama sonuçlarını işlemek için ScanCallback.
+     */
+    private final ScanCallback leScanCallback = new ScanCallback() {
+        @Override
+        public void onScanResult(int callbackType, ScanResult result) {
+            super.onScanResult(callbackType, result);
+            if (ActivityCompat.checkSelfPermission(MainActivity.this, android.Manifest.permission.BLUETOOTH_CONNECT) != PackageManager.PERMISSION_GRANTED) {
+                // TODO: Consider calling
+                //    ActivityCompat#requestPermissions
+                return;
+            }
+            Log.d("BLE", "Bulunan cihaz: " + result.getDevice().getName() + " - " + result.getDevice().getAddress());
+        }
+    };
 
     /**
      * Kullanıcının izin sonuçlarını yönetir.
