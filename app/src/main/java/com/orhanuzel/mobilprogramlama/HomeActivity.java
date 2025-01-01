@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.Toast;
-import android.content.Context;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -46,14 +45,14 @@ public class HomeActivity extends AppCompatActivity {
 
     // Broadcast mesajı gönderme fonksiyonu
     private void sendBroadcastMessage() {
-        // Gönderilecek mesajın tanımlandığı Intent
+        // Broadcast için özel action belirliyoruz
         Intent intent = new Intent();
-        intent.setAction("com.orhanuzel.broadcast.LOGOUT");  // Özel action
+        intent.setAction("com.orhanuzel.broadcast.LOGOUT");  // Burada action doğru olmalı
 
-        // İstediğiniz ekstra verileri ekleyebilirsiniz (isteğe bağlı)
+        // Mesajı ekstra verilerle ekliyoruz
         intent.putExtra("message", "Kullanıcı çıkış yaptı!");
 
-        // Broadcast mesajını gönder
+        // Broadcast mesajını gönderiyoruz
         sendBroadcast(intent);
     }
 }

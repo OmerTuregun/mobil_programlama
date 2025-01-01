@@ -1,5 +1,6 @@
 package com.orhanuzel.mobilprogramlama;
 
+import android.annotation.SuppressLint;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.BroadcastReceiver;
@@ -11,6 +12,7 @@ import androidx.core.app.NotificationCompat;
 
 public class NotificationReceiver extends BroadcastReceiver {
 
+    @SuppressLint("NotificationPermission")
     @Override
     public void onReceive(Context context, Intent intent) {
         // Broadcast'tan alınan mesaj
