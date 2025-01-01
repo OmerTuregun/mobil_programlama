@@ -50,6 +50,9 @@ public class MainActivity extends AppCompatActivity {
                             new OneTimeWorkRequest.Builder(SyncWorker.class).build();
                     WorkManager.getInstance(MainActivity.this).enqueue(syncWorkRequest);
 
+                    // Broadcast mesajı gönderme
+                    sendBroadcastMessage();  // Giriş işlemi tamamlandıktan sonra mesaj gönder
+
                 } else {
                     Toast.makeText(MainActivity.this,
                             "Lütfen kullanıcı adı ve şifre girin!",
@@ -57,5 +60,18 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    // Broadcast mesajı gönderme fonksiyonu
+    private void sendBroadcastMessage() {
+        // Gönderilecek mesajın tanımlandığı Intent
+        Intent intent = new Intent();
+        intent.setAction("com.orhanuzel.broadcast.LOGIN");  // Özel action
+
+        // İstediğiniz ekstra verileri ekleyebilirsiniz (isteğe bağlı)
+        intent.putExtra("message", "Kullanıcı giriş yaptı!");
+
+        // Broadcast mesajını gönder
+        sendBroadcast(intent);
     }
 }
