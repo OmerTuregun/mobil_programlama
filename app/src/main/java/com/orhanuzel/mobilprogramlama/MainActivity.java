@@ -8,11 +8,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
+import androidx.work.OneTimeWorkRequest;
+import androidx.work.WorkManager;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -26,28 +24,16 @@ public class MainActivity extends AppCompatActivity {
         Button loginButton = findViewById(R.id.login_button);
         TextView registerLink = findViewById(R.id.register_link);
 
-        loginButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String user = username.getText().toString();
-                String pass = password.getText().toString();
-
-                Toast.makeText(MainActivity.this,
-                        "Kullanıcı Adı: " + user + "\nŞifre: " + pass,
-                        Toast.LENGTH_SHORT).show();
-            }
-        });
-
+        // Kayıt ekranına yönlendirme
         registerLink.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Kayıt ekranına yönlendirme
                 Intent intent = new Intent(MainActivity.this, RegisterActivity.class);
                 startActivity(intent);
             }
         });
 
-
+        // Giriş işlemi ve arka plan işleminin tetiklenmesi
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -58,6 +44,12 @@ public class MainActivity extends AppCompatActivity {
                     // Kullanıcıyı ana sayfaya yönlendir
                     Intent intent = new Intent(MainActivity.this, HomeActivity.class);
                     startActivity(intent);
+
+                    // WorkManager ile arka plan işini başlat
+                    OneTimeWorkRequest syncWorkRequest =
+                            new OneTimeWorkRequest.Builder(SyncWorker.class).build();
+                    WorkManager.getInstance(MainActivity.this).enqueue(syncWorkRequest);
+
                 } else {
                     Toast.makeText(MainActivity.this,
                             "Lütfen kullanıcı adı ve şifre girin!",
