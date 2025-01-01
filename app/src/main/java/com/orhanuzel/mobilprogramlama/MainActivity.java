@@ -6,9 +6,11 @@ import android.bluetooth.le.ScanCallback;
 import android.bluetooth.le.ScanResult;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -19,6 +21,16 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.orhanuzel.mobilprogramlama.api.AuthApi;
+import com.orhanuzel.mobilprogramlama.api.RetrofitClient;
+import com.orhanuzel.mobilprogramlama.api.AuthRequest;
+import com.orhanuzel.mobilprogramlama.api.AuthResponse;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
+
 public class MainActivity extends AppCompatActivity {
 
     private static final int REQUEST_ENABLE_BT = 1;
@@ -26,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
 
     private BluetoothAdapter bluetoothAdapter; // Bluetooth Adapter
     private BluetoothLeScanner bluetoothLeScanner; // BLE Scanner
+    private SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +52,9 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
 
-
+        // SharedPreferences başlatma
+        sharedPreferences = getSharedPreferences("AuthPrefs", MODE_PRIVATE);
+        findViewById(R.id.loginButton).setOnClickListener(v -> authenticateUser("example@example.com", "password123"));
         // Butonlara tıklama işlevi ekleyin
         findViewById(R.id.startScanButton).setOnClickListener(v -> startScan());
         findViewById(R.id.stopScanButton).setOnClickListener(v -> stopScan());
@@ -48,8 +63,49 @@ public class MainActivity extends AppCompatActivity {
         checkBluetoothSupport();
         // Wi-Fi Aç-Kapat işlevi kontrolü
         findViewById(R.id.toggleWifiButton).setOnClickListener(v -> toggleWifi());
+
+        // Kullanıcı oturum kontrolü
+        String token = sharedPreferences.getString("authToken", null);
+        if (token != null) {
+            Log.d("AUTH", "Kullanıcı zaten oturum açmış: Token -> " + token);
+        } else {
+            Log.d("AUTH", "Oturum açmamış kullanıcı.");
+        }
     }
 
+    /**
+     * Kullanıcı girişini doğrular ve token alır.
+     */
+    private void authenticateUser(String email, String password) {
+        AuthApi authApi = RetrofitClient.getInstance().create(AuthApi.class);
+        AuthRequest authRequest = new AuthRequest(email, password);
+
+        authApi.login(authRequest).enqueue(new Callback<AuthResponse>() {
+            @Override
+            public void onResponse(Call<AuthResponse> call, Response<AuthResponse> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    String token = response.body().getToken();
+
+                    // Token SharedPreferences'a kaydedilir
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    editor.putString("authToken", token);
+                    editor.apply();
+
+                    Log.d("AUTH", "Başarılı giriş! Token: " + token);
+                    Toast.makeText(MainActivity.this, "Başarıyla giriş yapıldı.", Toast.LENGTH_SHORT).show();
+                } else {
+                    Log.e("AUTH", "Giriş başarısız: " + response.code());
+                    Toast.makeText(MainActivity.this, "Giriş başarısız!", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<AuthResponse> call, Throwable t) {
+                Log.e("AUTH", "Hata: " + t.getMessage());
+                Toast.makeText(MainActivity.this, "Giriş sırasında hata oluştu.", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
     private void checkNfcSupport() {
         android.nfc.NfcAdapter nfcAdapter = android.nfc.NfcAdapter.getDefaultAdapter(this);
 
