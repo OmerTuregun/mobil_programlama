@@ -1,0 +1,24 @@
+R_DEF: Internal format may change without notice
+local
+color black
+color white
+drawable edit_text_background
+drawable ic_launcher_background
+drawable ic_launcher_foreground
+id btn_logout
+id btn_profile
+id btn_settings
+id login_button
+id password
+id register_link
+id username
+layout activity_home
+layout activity_main
+layout activity_register
+mipmap ic_launcher
+mipmap ic_launcher_round
+string app_name
+style Base.Theme.MobilProgramlama
+style Theme.MobilProgramlama
+xml backup_rules
+xml data_extraction_rules
