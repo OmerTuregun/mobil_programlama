@@ -1,0 +1,22 @@
+[
+    {
+        "merged": "C:\\Users\\Orhan UZEL\\.gradle\\daemon\\8.7\\com.orhanuzel.mobilprogramlama.app-mergeDebugResources-3:\\layout\\activity_movie_details_in_list_view.xml",
+        "source": "C:\\Users\\Orhan UZEL\\.gradle\\daemon\\8.7\\com.orhanuzel.mobilprogramlama.app-main-6:\\layout\\activity_movie_details_in_list_view.xml"
+    },
+    {
+        "merged": "com.orhanuzel.mobilprogramlama.app-mergeDebugResources-3:/layout/activity_local_database.xml",
+        "source": "com.orhanuzel.mobilprogramlama.app-main-6:/layout/activity_local_database.xml"
+    },
+    {
+        "merged": "C:\\Users\\Orhan UZEL\\.gradle\\daemon\\8.7\\com.orhanuzel.mobilprogramlama.app-mergeDebugResources-3:\\layout\\activity_main.xml",
+        "source": "C:\\Users\\Orhan UZEL\\.gradle\\daemon\\8.7\\com.orhanuzel.mobilprogramlama.app-main-6:\\layout\\activity_main.xml"
+    },
+    {
+        "merged": "C:\\Users\\Orhan UZEL\\.gradle\\daemon\\8.7\\com.orhanuzel.mobilprogramlama.app-mergeDebugResources-3:\\layout\\activity_local_database.xml",
+        "source": "C:\\Users\\Orhan UZEL\\.gradle\\daemon\\8.7\\com.orhanuzel.mobilprogramlama.app-main-6:\\layout\\activity_local_database.xml"
+    },
+    {
+        "merged": "C:\\Users\\Orhan UZEL\\.gradle\\daemon\\8.7\\com.orhanuzel.mobilprogramlama.app-mergeDebugResources-3:\\layout\\activity_shared_preferences.xml",
+        "source": "C:\\Users\\Orhan UZEL\\.gradle\\daemon\\8.7\\com.orhanuzel.mobilprogramlama.app-main-6:\\layout\\activity_shared_preferences.xml"
+    }
+]

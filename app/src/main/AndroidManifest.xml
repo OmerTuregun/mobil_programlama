@@ -2,6 +2,37 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+  
+  
+    <!-- Gerekli İzinler -->
+    <!-- Bluetooth İzinleri -->
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+    <uses-permission android:name="android.permission.BLUETOOTH_SCAN" />
+    <uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADVERTISE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
+
+    <!-- Wi-Fi İzinleri -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <!-- NFC İzinleri -->
+    <uses-permission android:name="android.permission.NFC" />
+    <uses-feature android:name="android.hardware.nfc" android:required="false" />
+
+
+    <!-- USB İzinleri -->
+    <uses-feature android:name="android.hardware.usb.host" android:required="false" />
+
+    <!-- Minimum SDK Seviyesi Kontrolü -->
+    <uses-sdk
+        tools:overrideLibrary="com.example.mobilprogramlama" />
+  
+  
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -12,22 +43,46 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MobilProgramlama"
         tools:targetApi="31">
+        
+        <activity
+            android:name=".MovieDetailsInListView"
+            android:exported="false" />
+        <activity
+            android:name=".LocalDatabaseActivity"
+            android:exported="true" />
+        <activity
+            android:name=".HomeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".RegisterActivity"
+            android:exported="false" />
+      
+      <activity
+            android:name=".SharedPreferencesActivity"
+            android:exported="true">
+
+        </activity>
+      
         <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
-        <activity
-            android:name=".SharedPreferencesActivity"
-            android:exported="true">
+        
 
-        </activity>
+        <!-- Broadcast Receiver'ı ekledik -->
+        <receiver
+            android:name=".NotificationReceiver"
+            android:enabled="true"
+            android:exported="false" />
+
 
     </application>
 
 </manifest>
+
+
