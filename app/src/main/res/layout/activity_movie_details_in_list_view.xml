@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MovieDetailsInListView">
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="208dp"
+        android:layout_height="match_parent"
+        android:gravity="start"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/linearLayout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/textName"
+            android:layout_width="match_parent"
+            android:layout_height="48sp"
+            android:layout_marginLeft="13dp"
+            android:layout_marginTop="40dp"
+            android:gravity="center|start"
+            android:text="Film İsmi:"
+            android:textSize="24sp" />
+
+        <TextView
+            android:id="@+id/textYear"
+            android:layout_width="match_parent"
+            android:layout_height="48sp"
+            android:layout_marginLeft="13dp"
+            android:layout_marginTop="40dp"
+            android:gravity="center|start"
+            android:text="Çıkış Yılı:"
+            android:textSize="24sp" />
+
+        <TextView
+            android:id="@+id/textContent"
+            android:layout_width="match_parent"
+            android:layout_height="48sp"
+            android:layout_marginLeft="13dp"
+            android:layout_marginTop="40dp"
+            android:gravity="center|start"
+            android:text="Yorumum:"
+            android:textSize="24sp" />
+
+        <TextView
+            android:id="@+id/textRate"
+            android:layout_width="match_parent"
+            android:layout_height="48sp"
+            android:layout_marginLeft="13dp"
+            android:layout_marginTop="40dp"
+            android:gravity="center|start"
+            android:text="Puanım:"
+            android:textSize="24sp" />
+
+        <TextView
+            android:id="@+id/textCategory"
+            android:layout_width="match_parent"
+            android:layout_height="48sp"
+            android:layout_marginLeft="13dp"
+            android:layout_marginTop="40dp"
+            android:gravity="center|start"
+            android:text="Kategori:"
+            android:textSize="24sp" />
+
+        <TextView
+            android:id="@+id/textDirector"
+            android:layout_width="match_parent"
+            android:layout_height="48sp"
+            android:layout_marginLeft="13dp"
+            android:layout_marginTop="40dp"
+            android:gravity="center|start"
+            android:text="Yönetmen:"
+            android:textSize="24sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="208dp"
+        android:layout_height="match_parent"
+        android:gravity="start"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="@+id/linearLayout2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/linearLayout2"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/textViewName"
+            android:layout_width="match_parent"
+            android:layout_height="48sp"
+            android:layout_marginTop="40dp"
+            android:layout_marginRight="13dp"
+            android:gravity="center|start"
+            android:text="name"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/textViewYear"
+            android:layout_width="match_parent"
+            android:layout_height="48sp"
+            android:layout_marginTop="40dp"
+            android:layout_marginRight="13dp"
+            android:gravity="center|start"
+            android:text="year"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/textViewContent"
+            android:layout_width="match_parent"
+            android:layout_height="48sp"
+            android:layout_marginTop="40dp"
+            android:layout_marginRight="13dp"
+            android:gravity="center|start"
+            android:text="content"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/textViewRate"
+            android:layout_width="match_parent"
+            android:layout_height="48sp"
+            android:layout_marginTop="40dp"
+            android:layout_marginRight="13dp"
+            android:gravity="center|start"
+            android:text="rate"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/textViewCategory"
+            android:layout_width="match_parent"
+            android:layout_height="48sp"
+            android:layout_marginTop="40dp"
+            android:layout_marginRight="13dp"
+            android:gravity="center|start"
+            android:text="category"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/textViewDirector"
+            android:layout_width="match_parent"
+            android:layout_height="48sp"
+            android:layout_marginTop="40dp"
+            android:gravity="center|start"
+            android:text="director"
+            android:textSize="16sp"
+            android:layout_marginRight="13dp" />
+
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

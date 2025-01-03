@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 # mobil_programlama
 
 $Gerekli Bilgiler:$
