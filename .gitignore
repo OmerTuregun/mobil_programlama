@@ -1,0 +1,100 @@
+# Android Studio ile ilgili dosyalar
+.idea/
+*.iml
+.gradle/
+local.properties
+build/
+
+# Çıktı dosyaları
+app/build/
+output/
+
+# İşletim sistemi ile ilgili dosyalar
+.DS_Store
+Thumbs.db
+
+# Java derleme dosyaları
+*.class
+*.jar
+*.war
+*.ear
+
+# Log dosyaları
+*.log
+
+# Keystore dosyaları (Hassas bilgiler için dikkat!)
+*.jks
+
+# Hassas bilgiler içeren JSON dosyaları
+google-services.json
+firebase.json
+
+# Proguard
+proguard/
+
+# İkinci bir Gradle cache klasörü (bazı durumlarda oluşabilir)
+.gradle-cache/
+
+# İlgisiz metin düzenleyici veya IDE dosyaları
+*.swp
+*.swo
+*~ 
+
+# Linux ve macOS geçici dosyaları
+*.tmp
+*.temp
+*.bak
+*.orig
+*.rej
+*.sublime-project
+*.sublime-workspace
+*.vscode/
+
+# Çalışma dosyaları ve kullanıcı ayarları
+.idea/workspace.xml
+.idea/libraries/
+.idea/modules.xml
+.idea/vcs.xml
+.idea/misc.xml
+.idea/caches/
+.idea/httpRequests/
+
+# IntelliJ IDEA plugin settings
+.idea/jsLibraryMappings.xml
+
+# Flutter spesifik dosyalar (Eğer projede Flutter kullanıyorsanız)
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+
+# Android NDK
+obj/
+
+# Son kullanıcı çıkış dosyaları
+#*.apk
+#*.ap_
+
+# Gradle Wrapper
+gradle-wrapper.jar
+
+# Son build dosyaları
+/build/
+
+# Test Sonuçları
+#*.xml
+#*.html
+#*.json
+#*.png
+#*.svg
+#*.coverage # bunları kullanırken dikkatli olmak lazım 
+
+# Kendi belirlediğiniz hassas dosyalar
+# Örneğin:
+# secrets.properties
+# api-keys.json
+
+#deneme amaçlı 
+gozukme.txt
+
+# çok sorun çıkartmasından ötürü
+.idea/workspace.xml
