@@ -104,7 +104,7 @@ public class MainActivity extends AppCompatActivity {
 
         // SharedPreferences başlatma
         sharedPreferences = getSharedPreferences("AuthPrefs", MODE_PRIVATE);
-        findViewById(R.id.loginButton).setOnClickListener(v -> authenticateUser("example@example.com", "password123"));
+        findViewById(R.id.login_button).setOnClickListener(v -> authenticateUser("example@example.com", "password123"));
         // Butonlara tıklama işlevi ekleyin
         findViewById(R.id.startScanButton).setOnClickListener(v -> startScan());
         findViewById(R.id.stopScanButton).setOnClickListener(v -> stopScan());
@@ -357,4 +357,10 @@ public class MainActivity extends AppCompatActivity {
         // Broadcast mesajını gönder
         sendBroadcast(intent);
     }
+
+    public void goToHome(View view){
+        Intent goToHomeIntent=new Intent(MainActivity.this,HomeActivity.class);
+        startActivity(goToHomeIntent);
+    }
+
 }

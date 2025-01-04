@@ -2,6 +2,7 @@ package com.orhanuzel.mobilprogramlama;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
@@ -20,9 +21,9 @@ public class HomeActivity extends AppCompatActivity {
         Button btnLogout = findViewById(R.id.btn_logout);
 
         // Profil butonu
-        btnProfile.setOnClickListener(v ->
-                Toast.makeText(HomeActivity.this, "Profilim açılıyor...", Toast.LENGTH_SHORT).show()
-        );
+//        btnProfile.setOnClickListener(v ->
+//                Toast.makeText(HomeActivity.this, "Profilim açılıyor...", Toast.LENGTH_SHORT).show()
+//        );
 
         // Ayarlar butonu
         btnSettings.setOnClickListener(v ->
@@ -55,4 +56,25 @@ public class HomeActivity extends AppCompatActivity {
         // Broadcast mesajını gönderiyoruz
         sendBroadcast(intent);
     }
+    public void  goToCloudServiceAiActivity(View view){
+        Intent intent=new Intent(HomeActivity.this,CloudServiceAIActivity.class);
+        startActivity(intent);
+    }
+    public void goToLocalDatabaseActivity(View view){
+        Intent intent=new Intent(HomeActivity.this,LocalDatabaseActivity.class);
+        startActivity(intent);
+    }
+
+    public void goToSharedPreferencesActivity(View view){
+        Toast.makeText(HomeActivity.this, "Profilim açılıyor...", Toast.LENGTH_SHORT).show();
+        Intent intent=new Intent(HomeActivity.this,SharedPreferencesActivity.class);
+        startActivity(intent);
+    }
+    public void goBack(View view){
+        Intent intent=new Intent(HomeActivity.this,MainActivity.class);
+        startActivity(intent);
+    }
+
 }
+
+

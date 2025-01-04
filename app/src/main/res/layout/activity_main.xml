@@ -16,7 +16,7 @@
         android:id="@+id/titleText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="14dp"
         android:layout_marginBottom="24dp"
         android:text="MobilProgramlamaProject" />
 
@@ -64,6 +64,13 @@
         android:textSize="16sp" />
 
     <!-- Tarama Başlat Butonu -->
+    <Button
+        android:id="@+id/buttonHome"
+        android:layout_width="210dp"
+        android:layout_height="wrap_content"
+        android:onClick="goToHome"
+        android:text="AnaEkran" />
+
     <Button
         android:id="@+id/startScanButton"
         android:layout_width="wrap_content"
