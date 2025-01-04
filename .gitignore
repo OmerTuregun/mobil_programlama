@@ -95,3 +95,6 @@ gradle-wrapper.jar
 
 #deneme amaçlı 
 gozukme.txt
+
+# çok sorun çıkartmasından ötürü
+.idea/workspace.xml
