@@ -8,7 +8,18 @@
     android:padding="16dp"
     android:background="#FFFFFF">
 
+    <!-- Başlık -->
+
     <!-- Kullanıcı Adı Girişi -->
+
+    <TextView
+        android:id="@+id/titleText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:layout_marginBottom="24dp"
+        android:text="MobilProgramlamaProject" />
+
     <EditText
         android:id="@+id/username"
         android:layout_width="match_parent"
@@ -38,14 +49,50 @@
         android:text="Giriş Yap"
         android:padding="12dp"
         android:backgroundTint="#FF6200EE"
-        android:textColor="#FFFFFF" />
+        android:textColor="#FFFFFF"
+        android:layout_marginBottom="16dp" />
+
+    <!-- Kayıt Ol Linki -->
     <TextView
         android:id="@+id/register_link"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Kayıt Ol"
-
-        android:textSize="16sp"
+        android:layout_gravity="center_horizontal"
         android:layout_marginTop="16dp"
-        android:layout_gravity="center_horizontal" />
+        android:layout_marginBottom="24dp"
+        android:text="Kayıt Ol"
+        android:textSize="16sp" />
+
+    <!-- Tarama Başlat Butonu -->
+    <Button
+        android:id="@+id/startScanButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tarama Başlat"
+        android:layout_marginTop="16dp" />
+
+    <!-- Tarama Durdur Butonu -->
+    <Button
+        android:id="@+id/stopScanButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tarama Durdur"
+        android:layout_marginTop="16dp" />
+
+    <!-- Wi-Fi Aç/Kapat Butonu -->
+    <Button
+        android:id="@+id/toggleWifiButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Wi-Fi Aç/Kapat"
+        android:layout_marginTop="16dp" />
+
+    <Button
+        android:id="@+id/checkNfcButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="NFC Durumunu Kontrol Et"
+        android:layout_marginTop="16dp" />
+
 </LinearLayout>
+
